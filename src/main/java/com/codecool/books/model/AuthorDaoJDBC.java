@@ -8,9 +8,11 @@ import java.util.List;
 
 public class AuthorDaoJDBC implements AuthorDao {
     private DataSource dataSource;
+    private AuthorDaoSql authorDaoSql; // work with sql queries
 
     public AuthorDaoJDBC(DataSource dataSource) {
         this.dataSource = dataSource;
+        this.authorDaoSql = new AuthorDaoSql();
     }
 
     @Override
@@ -32,6 +34,6 @@ public class AuthorDaoJDBC implements AuthorDao {
     @Override
     public List<Author> getAll() throws SQLException {
 
-        return AuthorDaoSql.getAuthorsFromDb(dataSource);
+        return authorDaoSql.getAuthorsFromDb(dataSource);
     }
 }

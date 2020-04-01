@@ -11,28 +11,28 @@ import java.util.List;
 
 public class AuthorDaoSql {
 
-    public static List<Author> getAuthorsFromDb(DataSource dataSource) throws SQLException {
-        System.out.println(dataSource);
+    private List<Author> workOnDb(DataSource dataSource, String sql) throws SQLException {
         Statement stmt = dataSource.getConnection().createStatement();
-        String sql = "SELECT * FROM author";
         ResultSet rs = stmt.executeQuery(sql);
         List<Author> authorsFromDb = new ArrayList<>();
+
         while(rs.next()){
             //Retrieve by column name
             int id  = rs.getInt("id");
             String first = rs.getString("first_name");
             String last = rs.getString("last_name");
             Date birth = rs.getDate("birth_date");
-            authorsFromDb.add(new Author(id, first, last, birth));
 
-            //Display values
-//            System.out.print("ID: " + id);
-//            System.out.print(", First: " + first);
-//            System.out.println(", Last: " + last);
-//            System.out.println(", Birth date: " + birth);
+            authorsFromDb.add(new Author(id, first, last, birth));
         }
         rs.close();
-//        List<Author> authors = Arrays.asList(new Author("Adam", "Sder", new Date(1982)));
-        return  authorsFromDb;
+
+        return authorsFromDb;
+    }
+
+    //get all authors from database
+    public List<Author> getAuthorsFromDb(DataSource dataSource) throws SQLException {
+        String sql = "SELECT * FROM author";
+        return workOnDb(dataSource, sql);
     }
 }
