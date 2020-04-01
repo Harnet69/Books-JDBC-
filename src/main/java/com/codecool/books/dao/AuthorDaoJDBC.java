@@ -1,9 +1,9 @@
-package com.codecool.books.model;
+package com.codecool.books.dao;
+
+import com.codecool.books.model.Author;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.sql.*;
-import java.util.Arrays;
 import java.util.List;
 
 public class AuthorDaoJDBC implements AuthorDao {
@@ -16,8 +16,8 @@ public class AuthorDaoJDBC implements AuthorDao {
     }
 
     @Override
-    public void add(Author author) {
-        // TODO
+    public void add(Author author) throws SQLException {
+        authorDaoSql.addAuthorToDb(dataSource, author);
     }
 
     @Override

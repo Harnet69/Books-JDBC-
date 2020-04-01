@@ -1,7 +1,7 @@
-package com.codecool.books;
+package com.codecool.books.controller;
 
 import com.codecool.books.model.Author;
-import com.codecool.books.model.AuthorDao;
+import com.codecool.books.dao.AuthorDao;
 import com.codecool.books.view.UserInterface;
 
 import java.sql.Date;
@@ -16,7 +16,7 @@ public class AuthorManager extends Manager {
     }
 
     @Override
-    protected void add() {
+    protected void add() throws SQLException {
         String firstName = ui.readString("First name", "X");
         String lastName = ui.readString("Last name", "Y");
         Date birthDate = ui.readDate("Birth date", Date.valueOf("1900-01-01"));

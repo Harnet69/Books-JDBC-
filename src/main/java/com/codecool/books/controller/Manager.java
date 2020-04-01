@@ -1,4 +1,4 @@
-package com.codecool.books;
+package com.codecool.books.controller;
 
 import com.codecool.books.view.UserInterface;
 
@@ -40,6 +40,6 @@ public abstract class Manager {
 
     protected abstract String getName();
     protected abstract void list() throws SQLException;
-    protected abstract void add();
+    protected abstract void add() throws SQLException;
     protected abstract void edit() throws SQLException;
 }

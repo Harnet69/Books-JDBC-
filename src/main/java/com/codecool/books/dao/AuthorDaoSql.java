@@ -1,9 +1,10 @@
-package com.codecool.books.model;
+package com.codecool.books.dao;
+
+import com.codecool.books.model.Author;
 
 import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class AuthorDaoSql {
@@ -27,6 +28,28 @@ public class AuthorDaoSql {
         return authorsFromDb;
     }
 
+    // add author to a database
+    public void addAuthorToDb(DataSource dataSource, Author author) throws SQLException {
+        String sql = "INSERT INTO author " +
+                "VALUES (?,?,?,?)";
+        author.setId(5);
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
+        statement.setInt(1, author.getId());
+        statement.setString(2, author.getFirstName());
+        statement.setString(3, author.getLastName());
+        statement.setDate(4, author.getBirthDate());
+//        ResultSet rs = statement.executeQuery();
+//        System.out.println("Added!");
+        int update = statement.executeUpdate();
+        ResultSet rs = statement.getGeneratedKeys();
+        if (rs != null && rs.next()) {
+            long key = rs.getLong(1);
+        }
+        assert rs != null;
+        rs.close();
+    }
+
+
     //get all authors from database
     public List<Author> getAuthorsFromDb(DataSource dataSource) throws SQLException {
         String sql = "SELECT * FROM author";
@@ -35,7 +58,6 @@ public class AuthorDaoSql {
 
     //get an author from database
     public Author getAuthorFromDb(DataSource dataSource, int id) throws SQLException {
-
         PreparedStatement statement = dataSource.getConnection().prepareStatement("SELECT * FROM author WHERE id = ?");
         statement.setInt(1, id);
         ResultSet rs = statement.executeQuery();

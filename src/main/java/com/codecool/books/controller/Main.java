@@ -1,13 +1,14 @@
-package com.codecool.books;
+package com.codecool.books.controller;
 
+import com.codecool.books.dao.AuthorDao;
+import com.codecool.books.dao.AuthorDaoInMemory;
+import com.codecool.books.dao.AuthorDaoJDBC;
 import com.codecool.books.model.*;
 import com.codecool.books.view.UserInterface;
 import org.postgresql.ds.PGSimpleDataSource;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Main {
@@ -80,7 +81,7 @@ public class Main {
     }
 
 
-    private void createInitialData() {
+    private void createInitialData() throws SQLException {
         ui.println("Creating initial data");
 
         Author author1 = new Author("J.R.R.", "Tolkien", Date.valueOf("1982-01-03"));

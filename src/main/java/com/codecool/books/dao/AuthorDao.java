@@ -1,4 +1,6 @@
-package com.codecool.books.model;
+package com.codecool.books.dao;
+
+import com.codecool.books.model.Author;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -9,7 +11,7 @@ public interface AuthorDao {
      *
      * @param author a new object, with ID not set yet (null)
      */
-    void add(Author author);
+    void add(Author author) throws SQLException;
 
     /**
      * Update existing object's data in the database
