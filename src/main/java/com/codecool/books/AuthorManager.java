@@ -17,11 +17,10 @@ public class AuthorManager extends Manager {
 
     @Override
     protected void add() {
-        int id = 0;
         String firstName = ui.readString("First name", "X");
         String lastName = ui.readString("Last name", "Y");
         Date birthDate = ui.readDate("Birth date", Date.valueOf("1900-01-01"));
-        authorDao.add(new Author(id, firstName, lastName, birthDate));
+        authorDao.add(new Author(firstName, lastName, birthDate));
     }
 
     @Override
@@ -31,14 +30,13 @@ public class AuthorManager extends Manager {
 
     @Override
     protected void list() throws SQLException {
-//        System.out.println(authorDao.getAll());
         for (Author author: authorDao.getAll()) {
             ui.println(author);
         }
     }
 
     @Override
-    protected void edit() {
+    protected void edit() throws SQLException {
         int id = ui.readInt("Author ID", 0);
         Author author = authorDao.get(id);
         if (author == null) {

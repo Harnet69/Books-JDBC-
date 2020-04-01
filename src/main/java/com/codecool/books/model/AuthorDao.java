@@ -24,7 +24,7 @@ public interface AuthorDao {
      * @param id ID to search by
      * @return Object with a given ID, or null if not found
      */
-    Author get(int id);
+    Author get(int id) throws SQLException;
 
     /**
      * Get all objects

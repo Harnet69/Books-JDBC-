@@ -83,10 +83,10 @@ public class Main {
     private void createInitialData() {
         ui.println("Creating initial data");
 
-        Author author1 = new Author(1,"J.R.R.", "Tolkien", Date.valueOf("1982-01-03"));
-        Author author2 = new Author(2, "Douglas", "Adams", Date.valueOf("1952-03-11"));
-        Author author3 = new Author(3,"George R. R.", "Martin", Date.valueOf("1948-09-20"));
-        Author author4 = new Author(4,"Frank", "Herbert", Date.valueOf("1920-10-08"));
+        Author author1 = new Author("J.R.R.", "Tolkien", Date.valueOf("1982-01-03"));
+        Author author2 = new Author("Douglas", "Adams", Date.valueOf("1952-03-11"));
+        Author author3 = new Author("George R. R.", "Martin", Date.valueOf("1948-09-20"));
+        Author author4 = new Author("Frank", "Herbert", Date.valueOf("1920-10-08"));
 
         authorDao.add(author1);
         authorDao.add(author2);

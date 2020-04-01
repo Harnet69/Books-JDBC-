@@ -41,5 +41,5 @@ public abstract class Manager {
     protected abstract String getName();
     protected abstract void list() throws SQLException;
     protected abstract void add();
-    protected abstract void edit();
+    protected abstract void edit() throws SQLException;
 }

@@ -26,14 +26,13 @@ public class AuthorDaoJDBC implements AuthorDao {
     }
 
     @Override
-    public Author get(int id) {
-        // TODO
-        return null;
+    public Author get(int id) throws SQLException {
+        System.out.println(id);
+        return authorDaoSql.getAuthorFromDb(dataSource, id);
     }
 
     @Override
     public List<Author> getAll() throws SQLException {
-
         return authorDaoSql.getAuthorsFromDb(dataSource);
     }
 }
