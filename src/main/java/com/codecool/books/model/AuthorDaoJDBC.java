@@ -3,6 +3,7 @@ package com.codecool.books.model;
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.sql.*;
+import java.util.Arrays;
 import java.util.List;
 
 public class AuthorDaoJDBC implements AuthorDao {
@@ -29,8 +30,8 @@ public class AuthorDaoJDBC implements AuthorDao {
     }
 
     @Override
-    public List<Author> getAll() {
-        // TODO
-        return null;
+    public List<Author> getAll() throws SQLException {
+
+        return AuthorDaoSql.getAuthorsFromDb(dataSource);
     }
 }
