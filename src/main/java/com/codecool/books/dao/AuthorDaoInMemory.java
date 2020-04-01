@@ -16,7 +16,7 @@ public class AuthorDaoInMemory implements AuthorDao {
     }
 
     @Override
-    public void update(Author author) {
+    public void update(Author author, int id) {
         authors.put(author.getId(), author);
     }
 

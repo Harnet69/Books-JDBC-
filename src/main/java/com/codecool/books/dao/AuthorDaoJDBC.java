@@ -21,8 +21,8 @@ public class AuthorDaoJDBC implements AuthorDao {
     }
 
     @Override
-    public void update(Author author) {
-        // TODO
+    public void update(Author author, int id) throws SQLException {
+       authorDaoSql.updateAuthorInDb(dataSource, id, author);
     }
 
     @Override

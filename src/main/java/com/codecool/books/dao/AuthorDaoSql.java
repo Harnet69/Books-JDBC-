@@ -49,7 +49,7 @@ public class AuthorDaoSql {
 
     //get all authors from database
     public List<Author> getAuthorsFromDb(DataSource dataSource) throws SQLException {
-        String sql = "SELECT * FROM author";
+        String sql = "SELECT * FROM author ORDER BY id";
         return workOnDb(dataSource, sql);
     }
 
@@ -72,5 +72,25 @@ public class AuthorDaoSql {
         rs.close();
 
         return author;
+    }
+
+    // update author in a database
+    public void updateAuthorInDb(DataSource dataSource,int id, Author author) throws SQLException {
+        String sql = "UPDATE author SET first_name = ?, last_name = ?, birth_date = ? WHERE id = ?";
+//        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
+        statement.setString(1, author.getFirstName());
+        statement.setString(2, author.getLastName());
+        statement.setDate(3, author.getBirthDate());
+        statement.setInt(4, id);
+
+        int update = statement.executeUpdate();
+        ResultSet rs = statement.getGeneratedKeys();
+        if (rs != null && rs.next()) {
+            long key = rs.getLong(1);
+            System.out.println(key);
+        }
+        assert rs != null;
+        rs.close();
     }
 }

@@ -51,6 +51,6 @@ public class AuthorManager extends Manager {
         author.setFirstName(firstName);
         author.setLastName(lastName);
         author.setBirthDate(birthDate);
-        authorDao.update(author);
+        authorDao.update(author, id);
     }
 }

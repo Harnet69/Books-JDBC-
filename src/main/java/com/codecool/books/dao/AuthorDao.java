@@ -18,7 +18,7 @@ public interface AuthorDao {
      *
      * @param author an object from the database, with ID already set
      */
-    void update(Author author);
+    void update(Author author, int id) throws SQLException;
 
     /**
      * Get object by ID
