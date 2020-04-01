@@ -17,10 +17,11 @@ public class AuthorManager extends Manager {
 
     @Override
     protected void add() {
+        int id = 0;
         String firstName = ui.readString("First name", "X");
         String lastName = ui.readString("Last name", "Y");
         Date birthDate = ui.readDate("Birth date", Date.valueOf("1900-01-01"));
-        authorDao.add(new Author(firstName, lastName, birthDate));
+        authorDao.add(new Author(id, firstName, lastName, birthDate));
     }
 
     @Override
