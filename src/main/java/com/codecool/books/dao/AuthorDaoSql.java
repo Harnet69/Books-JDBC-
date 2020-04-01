@@ -30,20 +30,17 @@ public class AuthorDaoSql {
 
     // add author to a database
     public void addAuthorToDb(DataSource dataSource, Author author) throws SQLException {
-        String sql = "INSERT INTO author " +
-                "VALUES (?,?,?,?)";
-        author.setId(5);
+        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
         PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
-        statement.setInt(1, author.getId());
-        statement.setString(2, author.getFirstName());
-        statement.setString(3, author.getLastName());
-        statement.setDate(4, author.getBirthDate());
-//        ResultSet rs = statement.executeQuery();
-//        System.out.println("Added!");
+        statement.setString(1, author.getFirstName());
+        statement.setString(2, author.getLastName());
+        statement.setDate(3, author.getBirthDate());
+
         int update = statement.executeUpdate();
         ResultSet rs = statement.getGeneratedKeys();
         if (rs != null && rs.next()) {
             long key = rs.getLong(1);
+            System.out.println(key);
         }
         assert rs != null;
         rs.close();

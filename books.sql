@@ -10,7 +10,7 @@ CREATE TABLE author (
 
 DROP TABLE IF EXISTS book;
 CREATE TABLE book (
-    id serial PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     author_id INTEGER REFERENCES author(id),
     title VARCHAR(40) NOT NULL
 );
