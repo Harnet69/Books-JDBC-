@@ -1,8 +1,6 @@
 package com.codecool.books.controller;
 
-import com.codecool.books.dao.AuthorDao;
-import com.codecool.books.dao.AuthorDaoInMemory;
-import com.codecool.books.dao.AuthorDaoJDBC;
+import com.codecool.books.dao.*;
 import com.codecool.books.model.*;
 import com.codecool.books.view.UserInterface;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -19,6 +17,7 @@ public class Main {
 
     UserInterface ui;
     AuthorDao authorDao;
+    BookDao bookDao;
 
     Main(UserInterface ui) {
         this.ui = ui;
@@ -39,7 +38,7 @@ public class Main {
                     new AuthorManager(ui, authorDao).run();
                     break;
                 case 'b':
-                    ui.println("Not implemented yet!");
+                    new BookManager(ui, bookDao).run();
                     break;
                 case 'q':
                     running = false;
@@ -55,12 +54,14 @@ public class Main {
             case 'i':
                 ui.println("Using in-memory database");
                 authorDao = new AuthorDaoInMemory();
+                // TODO Create bookDao = new BookDaoInMemory(dataSource);
                 createInitialData();
                 break;
             case 'j':
                 ui.println("Using JDBC");
                 DataSource dataSource = connect();
                 authorDao = new AuthorDaoJDBC(dataSource);
+                bookDao = new BookDaoJDBC(dataSource);
                 break;
         }
     }

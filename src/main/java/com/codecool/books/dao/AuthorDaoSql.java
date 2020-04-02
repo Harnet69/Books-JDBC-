@@ -46,7 +46,6 @@ public class AuthorDaoSql {
         rs.close();
     }
 
-
     //get all authors from database
     public List<Author> getAuthorsFromDb(DataSource dataSource) throws SQLException {
         String sql = "SELECT * FROM author ORDER BY id";
