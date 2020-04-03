@@ -1,6 +1,5 @@
 package com.codecool.books.dao;
 
-import com.codecool.books.model.Author;
 import com.codecool.books.model.Book;
 
 import javax.sql.DataSource;
@@ -33,7 +32,8 @@ public class BookDaoJDBC implements BookDao {
 
     @Override
     public List<Book> getAll() throws SQLException {
-        return bookDaoSql.getAuthorsFromDb(dataSource);
+        System.out.println(bookDaoSql.getBooksFromDb(dataSource).get(0).getAuthorId());
+        return bookDaoSql.getBooksFromDb(dataSource);
     }
 
 //    @Override

@@ -20,7 +20,6 @@ public class BookDaoSql {
             int id  = rs.getInt("id");
             String title = rs.getString("title");
             int authorId = rs.getInt("author_id");
-
             booksFromDb.add(new Book(id, title, authorId));
         }
         rs.close();
@@ -29,7 +28,13 @@ public class BookDaoSql {
     }
 
     //get all authors from database
-    public List<Book> getAuthorsFromDb(DataSource dataSource) throws SQLException {
+    public List<Book> getBooksFromDb(DataSource dataSource) throws SQLException {
+        String sql = "SELECT * FROM book ORDER BY id";
+        return workOnDb(dataSource, sql);
+    }
+
+    //get all authors from database
+    public List<Book> getBookFromDb(DataSource dataSource, int authorId) throws SQLException {
         String sql = "SELECT * FROM book ORDER BY id";
         return workOnDb(dataSource, sql);
     }

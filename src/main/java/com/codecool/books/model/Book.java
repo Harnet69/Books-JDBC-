@@ -12,11 +12,13 @@ public class Book {
 
     public Book(String title, int authorId) {
         this.title = title;
+        this.authorId = authorId;
     }
 
     public Book(int id, String title, int authorId) {
         this.id = id;
         this.title = title;
+        this.authorId = authorId;
     }
 
     public Integer getId() {
@@ -45,7 +47,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return String.format("Book %d: %s",
-                id, title);
+        return String.format("Book %d: %s, %s",
+                id, title, authorId);
     }
 }
