@@ -22,17 +22,16 @@ public class BookDaoJDBC implements BookDao {
 
     @Override
     public void update(Book book, int id) throws SQLException {
-
+        bookDaoSql.updateBookInDb(dataSource, id, book);
     }
 
     @Override
     public Book get(int id) throws SQLException {
-        return null;
+        return bookDaoSql.getBookFromDb(dataSource, id);
     }
 
     @Override
     public List<Book> getAll() throws SQLException {
-        System.out.println(bookDaoSql.getBooksFromDb(dataSource).get(0).getAuthorId());
         return bookDaoSql.getBooksFromDb(dataSource);
     }
 

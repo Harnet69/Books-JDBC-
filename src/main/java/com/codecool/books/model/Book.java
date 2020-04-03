@@ -1,7 +1,5 @@
 package com.codecool.books.model;
 
-import java.sql.Date;
-
 public class Book {
     // null means not saved
     private Integer id;

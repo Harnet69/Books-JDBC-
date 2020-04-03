@@ -33,10 +33,43 @@ public class BookDaoSql {
         return workOnDb(dataSource, sql);
     }
 
-    //get all authors from database
-    public List<Book> getBookFromDb(DataSource dataSource, int authorId) throws SQLException {
-        String sql = "SELECT * FROM book ORDER BY id";
-        return workOnDb(dataSource, sql);
+    //get book from database
+    public Book getBookFromDb(DataSource dataSource, int bookId) throws SQLException {
+        String sql = "SELECT * FROM book WHERE id = ?";
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
+        statement.setInt(1, bookId);
+        ResultSet rs = statement.executeQuery();
+        Book book = null;
+
+        while(rs.next()){
+            //Retrieve by column name
+            int id  = rs.getInt("id");
+            String title  = rs.getString("title");
+            int authorId  = rs.getInt("author_id");
+
+            book = new Book(id, title, authorId);
+        }
+        rs.close();
+
+        return book;
+    }
+
+        // update book in a database
+    public void updateBookInDb(DataSource dataSource,int id, Book book) throws SQLException {
+        String sql = "UPDATE book SET title = ?, author_id = ? WHERE id = ?";
+//        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
+        statement.setString(1, book.getTitle());
+        statement.setInt(2, book.getAuthorId());
+        statement.setInt(3, id);
+        int update = statement.executeUpdate();
+        ResultSet rs = statement.getGeneratedKeys();
+        if (rs != null && rs.next()) {
+            long key = rs.getLong(1);
+            System.out.println(key);
+        }
+        assert rs != null;
+        rs.close();
     }
 //
 //    // add author to a database
