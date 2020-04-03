@@ -17,7 +17,7 @@ public class BookDaoJDBC implements BookDao {
 
     @Override
     public void add(Book book) throws SQLException {
-
+        bookDaoSql.addBookToDb(dataSource, book);
     }
 
     @Override
@@ -34,25 +34,4 @@ public class BookDaoJDBC implements BookDao {
     public List<Book> getAll() throws SQLException {
         return bookDaoSql.getBooksFromDb(dataSource);
     }
-
-//    @Override
-//    public void add(Author author) throws SQLException {
-//        bookDaoSql.addAuthorToDb(dataSource, author);
-//    }
-//
-//    @Override
-//    public void update(Author author, int id) throws SQLException {
-//        bookDaoSql.updateBookInDb(dataSource, id, book);
-//    }
-//
-//    @Override
-//    public Author get(int id) throws SQLException {
-//        System.out.println(id);
-//        return authorDaoSql.getAuthorFromDb(dataSource, id);
-//    }
-//
-//    @Override
-//    public List<Author> getAll() throws SQLException {
-//        return authorDaoSql.getAuthorsFromDb(dataSource);
-//    }
 }

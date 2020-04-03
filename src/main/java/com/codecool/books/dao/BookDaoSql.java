@@ -1,6 +1,5 @@
 package com.codecool.books.dao;
 
-import com.codecool.books.model.Author;
 import com.codecool.books.model.Book;
 
 import javax.sql.DataSource;
@@ -57,7 +56,6 @@ public class BookDaoSql {
         // update book in a database
     public void updateBookInDb(DataSource dataSource,int id, Book book) throws SQLException {
         String sql = "UPDATE book SET title = ?, author_id = ? WHERE id = ?";
-//        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
         PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
         statement.setString(1, book.getTitle());
         statement.setInt(2, book.getAuthorId());
@@ -65,69 +63,27 @@ public class BookDaoSql {
         int update = statement.executeUpdate();
         ResultSet rs = statement.getGeneratedKeys();
         if (rs != null && rs.next()) {
-            long key = rs.getLong(1);
+            long key = rs.getLong(3);
             System.out.println(key);
         }
         assert rs != null;
         rs.close();
     }
-//
-//    // add author to a database
-//    public void addAuthorToDb(DataSource dataSource, Author author) throws SQLException {
-//        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
-//        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
-//        statement.setString(1, author.getFirstName());
-//        statement.setString(2, author.getLastName());
-//        statement.setDate(3, author.getBirthDate());
-//
-//        int update = statement.executeUpdate();
-//        ResultSet rs = statement.getGeneratedKeys();
-//        if (rs != null && rs.next()) {
-//            long key = rs.getLong(1);
-//            System.out.println(key);
-//        }
-//        assert rs != null;
-//        rs.close();
-//    }
-//
-//    //get an author from database
-//    public Author getAuthorFromDb(DataSource dataSource, int id) throws SQLException {
-//        PreparedStatement statement = dataSource.getConnection().prepareStatement("SELECT * FROM author WHERE id = ?");
-//        statement.setInt(1, id);
-//        ResultSet rs = statement.executeQuery();
-//        Author author = null;
-//
-//        while(rs.next()){
-//            //Retrieve by column name
-//            int authorId  = rs.getInt("id");
-//            String first = rs.getString("first_name");
-//            String last = rs.getString("last_name");
-//            Date birth = rs.getDate("birth_date");
-//
-//            author = new Author(authorId, first, last, birth);
-//        }
-//        rs.close();
-//
-//        return author;
-//    }
-//
-//    // update author in a database
-//    public void updateAuthorInDb(DataSource dataSource,int id, Author author) throws SQLException {
-//        String sql = "UPDATE author SET first_name = ?, last_name = ?, birth_date = ? WHERE id = ?";
-////        String sql = "INSERT INTO author (first_name, last_name, birth_date) VALUES (?,?,?)";
-//        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
-//        statement.setString(1, author.getFirstName());
-//        statement.setString(2, author.getLastName());
-//        statement.setDate(3, author.getBirthDate());
-//        statement.setInt(4, id);
-//
-//        int update = statement.executeUpdate();
-//        ResultSet rs = statement.getGeneratedKeys();
-//        if (rs != null && rs.next()) {
-//            long key = rs.getLong(1);
-//            System.out.println(key);
-//        }
-//        assert rs != null;
-//        rs.close();
-//    }
+
+    // add book to a database
+    public void addBookToDb(DataSource dataSource, Book book) throws SQLException {
+        String sql = "INSERT INTO book (title, author_id) VALUES (?,?)";
+        PreparedStatement statement = dataSource.getConnection().prepareStatement(sql);
+        statement.setString(1, book.getTitle());
+        statement.setInt(2, book.getAuthorId());
+
+        int update = statement.executeUpdate();
+        ResultSet rs = statement.getGeneratedKeys();
+        if (rs != null && rs.next()) {
+            long key = rs.getLong(2);
+            System.out.println(key);
+        }
+        assert rs != null;
+        rs.close();
+    }
 }
