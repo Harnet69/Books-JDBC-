@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 import java.util.List;
 
-public class BookDaoJDBC implements BookDao {
+public class BookDaoJDBC implements Dao<Book> {
     private DataSource dataSource;
     private BookDaoSql bookDaoSql; // work with sql queries
 

@@ -16,8 +16,8 @@ public class Main {
     }
 
     UserInterface ui;
-    AuthorDao authorDao;
-    BookDao bookDao;
+    Dao<Author> authorDao;
+    Dao<Book> bookDao;
 
     Main(UserInterface ui) {
         this.ui = ui;

@@ -1,15 +1,15 @@
 package com.codecool.books.controller;
 
-import com.codecool.books.dao.BookDao;
+import com.codecool.books.dao.Dao;
 import com.codecool.books.model.Book;
 import com.codecool.books.view.UserInterface;
 
 import java.sql.SQLException;
 
 public class BookManager extends Manager {
-    BookDao bookDao;
+    Dao<Book> bookDao;
 
-    public BookManager(UserInterface ui, BookDao bookDao) {
+    public BookManager(UserInterface ui, Dao<Book> bookDao) {
         super(ui);
         this.bookDao = bookDao;
     }

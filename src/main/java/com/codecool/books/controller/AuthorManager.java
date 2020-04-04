@@ -1,16 +1,17 @@
 package com.codecool.books.controller;
 
+import com.codecool.books.dao.Dao;
 import com.codecool.books.model.Author;
-import com.codecool.books.dao.AuthorDao;
 import com.codecool.books.view.UserInterface;
 
 import java.sql.Date;
 import java.sql.SQLException;
 
 public class AuthorManager extends Manager {
-    AuthorDao authorDao;
 
-    public AuthorManager(UserInterface ui, AuthorDao authorDao) {
+    Dao<Author> authorDao;
+
+    public AuthorManager(UserInterface ui, Dao<Author> authorDao) {
         super(ui);
         this.authorDao = authorDao;
     }

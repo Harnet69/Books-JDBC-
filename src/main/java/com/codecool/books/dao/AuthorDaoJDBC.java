@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.List;
 
-public class AuthorDaoJDBC implements AuthorDao {
+public class AuthorDaoJDBC implements Dao<Author> {
     private DataSource dataSource;
     private AuthorDaoSql authorDaoSql; // work with sql queries
 
