@@ -14,23 +14,23 @@ public class BookDaoInMemory implements Dao<Book> {
     int idCounter = 0;
 
     @Override
-    public void add(Book book) throws SQLException {
+    public void add(Book book){
         book.setId(idCounter);
         idCounter++;
         books.put(book.getId(), book);
     }
     @Override
-    public void update(Book item, int id) throws SQLException {
-
+    public void update(Book book, int id){
+        books.put(book.getId(), book);
     }
 
     @Override
-    public Book get(int id) throws SQLException {
-        return null;
+    public Book get(int id){
+        return books.get(id);
     }
 
     @Override
-    public List<Book> getAll() throws SQLException {
+    public List<Book> getAll(){
         return new ArrayList<>(books.values());
     }
 }
