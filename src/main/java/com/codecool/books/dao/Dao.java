@@ -1,7 +1,5 @@
 package com.codecool.books.dao;
 
-import com.codecool.books.model.Author;
-
 import java.sql.SQLException;
 import java.util.List;
 

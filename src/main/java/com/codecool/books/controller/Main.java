@@ -54,7 +54,7 @@ public class Main {
             case 'i':
                 ui.println("Using in-memory database");
                 authorDao = new AuthorDaoInMemory();
-                // TODO Create bookDao = new BookDaoInMemory(dataSource);
+                bookDao = new BookDaoInMemory();
                 createInitialData();
                 break;
             case 'j':
@@ -94,14 +94,12 @@ public class Main {
         authorDao.add(author3);
         authorDao.add(author4);
 
-        /*
-        bookDao.add(new Book(author1, "Hobbit"));
-        bookDao.add(new Book(author1, "Lord of the Rings"));
-        bookDao.add(new Book(author2, "Hitchhiker's Guide to the Galaxy"));
-        bookDao.add(new Book(author3, "A Game of Thrones"));
-        bookDao.add(new Book(author3, "Tuf Voyaging"));
-        bookDao.add(new Book(author4, "Dune"));
-         */
+        bookDao.add(new Book("Hobbit", 1));
+        bookDao.add(new Book("Lord of the Rings",1));
+        bookDao.add(new Book("Hitchhiker's Guide to the Galaxy", 2));
+        bookDao.add(new Book("A Game of Thrones", 3));
+        bookDao.add(new Book("Tuf Voyaging", 3));
+        bookDao.add(new Book("Dune", 4));
     }
 
 }
